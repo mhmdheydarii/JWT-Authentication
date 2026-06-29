@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "drf_yasg",
     # restframework
     "rest_framework",
     "rest_framework_simplejwt",
+    "rest_framework_swagger", 
+
     # apps
     "accounts",
 ]
@@ -128,7 +131,6 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = "static/"
-
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = "media/"

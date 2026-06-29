@@ -10,5 +10,7 @@ app_name = "accounts"
 
 urlpatterns = [
     path("registration/", views.RegistrationView.as_view(), name="registrations"),
-    path("login/", views.LoginView.as_view(), name="login")
+    path("login/", views.LoginView.as_view(), name="login"),
+    path("refresh/", TokenRefreshView.as_view(), name="refresh"),
+    path("verify/", TokenVerifyView.as_view(), name="verify"),
 ]
