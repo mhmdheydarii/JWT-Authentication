@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import status
-from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenBlacklistView
 from .serializers import RegistrationSerializer, LoginSerializer
 # Create your views here.
 
