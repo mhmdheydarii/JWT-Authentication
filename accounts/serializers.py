@@ -43,6 +43,16 @@ class ChangePasswordSerializer(serializers.Serializer):
 
     old_password = serializers.CharField()
     new_password = serializers.CharField()
+    complete_password = serializers.CharField()
+
+    def validate(self, attrs):
+        if attrs["new_password"] != attrs["complete_password"]:
+            raise serializers.ValidationError({"message":"password didn`t match"})
+        try:
+            validate_password(attrs.get("new_password"))
+        except exceptions.ValidationError as e:
+            raise serializers.ValidationError({"data":[e.messages]})
+        return super().validate(attrs)
 
 
 class ProfileSerializer(serializers.ModelSerializer):
