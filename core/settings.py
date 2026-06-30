@@ -143,6 +143,18 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Authentication model
 AUTH_USER_MODEL = "accounts.User"
 
+# Swagger Settings
+SWAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+            "description": 'JWT Authorization header using the Bearer scheme. Example: "Bearer {token}"',
+        }
+    }
+}
+
 # Simple JWT
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10),

@@ -36,4 +36,11 @@ class LoginSerializer(TokenObtainPairSerializer):
         validated_data["email"] = self.user.email
 
         return validated_data
+    
+
+class ChangePasswordSerializer(serializers.Serializer):
+
+    old_password = serializers.CharField()
+    new_password = serializers.CharField()
+
 
