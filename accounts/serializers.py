@@ -1,8 +1,9 @@
 from rest_framework import serializers
 from django.contrib.auth.password_validation import validate_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from .models import User
 from django.core import exceptions
+from .models import User, Profile
+
 
 class RegistrationSerializer(serializers.ModelSerializer):
 
@@ -44,3 +45,10 @@ class ChangePasswordSerializer(serializers.Serializer):
     new_password = serializers.CharField()
 
 
+class ProfileSerializer(serializers.ModelSerializer):
+    
+    email = serializers.CharField(source="user.email", read_only=True)
+
+    class Meta:
+        model = Profile
+        fields = ["email" ,"first_name", "last_name", "created_date"]

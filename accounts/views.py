@@ -4,8 +4,17 @@ from rest_framework import generics
 from rest_framework import status
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import IsAuthenticated
-from .serializers import RegistrationSerializer, LoginSerializer, ChangePasswordSerializer
+from .serializers import (
+    RegistrationSerializer, 
+    LoginSerializer, 
+    ChangePasswordSerializer, 
+    ProfileSerializer
+)
+from django.shortcuts import get_object_or_404
+from .models import Profile
+
 # Create your views here.
+
 
 class RegistrationView(generics.GenericAPIView):
     serializer_class = RegistrationSerializer
@@ -47,3 +56,11 @@ class ChangePasswordView(generics.GenericAPIView):
         return Response({"message":"You`r password changed"}, status=status.HTTP_200_OK)
     
 
+class ProfileView(generics.RetrieveUpdateAPIView):
+    serializer_class = ProfileSerializer
+    queryset = Profile.objects.all()
+
+    def get_object(self):
+        queryset = self.get_queryset()
+        obj = get_object_or_404(queryset, user=self.request.user.id)
+        return obj
